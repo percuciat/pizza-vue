@@ -35,5 +35,8 @@ export default {
             console.log('err inside catch', e)
             console.log(e)
         }
+    },
+    saveApiDataToLocalStorage() {
+        console.log('need to complete!')
     }
 }

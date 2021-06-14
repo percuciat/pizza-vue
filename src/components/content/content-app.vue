@@ -21,7 +21,7 @@
 
 <script>
   import {defineComponent} from "vue";
-  import {mapGetters} from "vuex";
+  import {mapGetters, mapState} from "vuex";
   import ContentCategory from "./content-category.vue";
   import ContentSort from "./content-sort.vue";
   import ContentAppProduct from "./content-app-product.vue";
@@ -40,10 +40,13 @@
     },
     data() {
       return {
-            fakeArr: [1,2,3,4,5,6,7,8,9,10]
+        fakeArr: [1,2,3,4,5,6,7,8,9,10]
       }
     },
     computed: {
+      ...mapState('filter', {
+        categoryActiveName: 'categoryActiveName',
+      }),
       ...mapGetters('product', {
         isLoad: 'isLoad',
         products: 'products',

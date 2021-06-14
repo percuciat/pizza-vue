@@ -1,9 +1,5 @@
 import api from '@/api'
 
-const state = () => ({
-    products: [],
-    isLoad: true
-});
 
 interface Load {
     isLoad: Boolean;
@@ -13,6 +9,15 @@ interface Products {
     products: Array<object>;
     type: string;
 }
+interface ProductsApi {
+    commit: (arg0: string, arg1: any) => void
+    rootState: {filter : {sortActive : string, sortOrder : string, categoryActive: any}}
+}
+
+const state = () => ({
+    products: [],
+    isLoad: true
+});
 
 const getters = {
     isLoad: (state: Load) => {
@@ -24,16 +29,18 @@ const getters = {
 };
 
 const actions = {
-    async getProductsApi(context: { commit: (arg0: string, arg1: any) => void; }, payload: any) {
-        context.commit('loadingStatus', true);
-        console.log('load')
-        return api.getDataProduct(payload).then(r => {
+    async getProductsApi({ commit, rootState: { filter }}: ProductsApi) {
+        commit('loadingStatus', true);
+        return api.getDataProduct({
+            category: filter.categoryActive,
+            type: filter.sortActive,
+            order: filter.sortOrder
+        }).then(r => {
             console.log('r---', r)
-            context.commit('loadingStatus', false);
-            context.commit('getProductsApi', r);
+            commit('loadingStatus', false);
+            commit('getProductsApi', r);
         })
-
-    },
+    }
 };
 
 // mutations

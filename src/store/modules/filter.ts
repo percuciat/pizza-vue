@@ -1,10 +1,6 @@
 
 
-const state = () => ({
-    categoryActive: 'Все',
-    sortActive: 'price',
-    sortOrder: 'desc'
-});
+
 
 interface Category {
     categoryActive: string;
@@ -15,6 +11,25 @@ interface Sort {
     type: string;
 }
 
+interface commitType {
+    commit: (arg0: string, arg1: any) => void
+}
+
+interface payloadCategory {
+    amount: any
+}
+
+interface payloadSort {
+    order: string
+    type: string
+}
+
+
+const state = () => ({
+    categoryActive: null,
+    sortActive: 'price',
+    sortOrder: 'desc'
+});
 // getters
 const getters = {
     category: (state: Category) => {
@@ -27,12 +42,12 @@ const getters = {
 
 // actions
 const actions = {
-    setChosenCategory(context: { commit: (arg0: string, arg1: any) => void; }, payload: { amount: string; }) {
-        context.commit('changeCategory', payload.amount);
+    setChosenCategory({ commit } : commitType, { amount } : payloadCategory) {
+        commit('changeCategory', amount);
     },
-    setChosenSort(context: { commit: (arg0: string, arg1: any) => void; }, payload: { type: string; order: string }) {
-        context.commit('changeSortOrder', payload.order);
-        context.commit('changeSort', payload.type);
+    setChosenSort({commit} : commitType, {order, type} : payloadSort) {
+        commit('changeSortOrder', order);
+        commit('changeSort', type);
     }
 };
 

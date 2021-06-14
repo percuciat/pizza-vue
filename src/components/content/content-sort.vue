@@ -1,5 +1,5 @@
 <template>
-    <div class="sort">
+    <div class="sort" ref="tree" >
         <div class="sort__label" @click="setVisibleFilter">
             <svg
                 class="icon"
@@ -60,6 +60,12 @@
         ],
       }
     },
+    created() {
+      document.body.addEventListener('click', this.handleOutsideClick)
+    },
+    unmounted() {
+      document.body.removeEventListener('click', this.handleOutsideClick)
+    },
     computed: {
       ...mapState('filter', {
         sortActive: 'sortActive'
@@ -68,7 +74,6 @@
         sort: 'sort',
       }),
       getChosenNameSort() {
-        console.log(this.$store.state.filter)
         return this.sortData.find(el => el.type === this.$store.state.filter.sortActive)
       }
     },
@@ -82,12 +87,17 @@
           type,
           order
         });
-        this.$store.dispatch('product/getProductsApi', {
-          type,
-          order
-        })
+        this.$store.dispatch('product/getProductsApi')
+      },
+      handleOutsideClick(e) {
+        if (this.isVisible) {
+          const path = e.path || (e.composedPath && e.composedPath()) || e.composedPath(e.target);
+          if (!path.includes(this.$refs.tree)) {
+            this.isVisible = false
+          }
+        }
       }
-    }
+    },
   });
 </script>
 

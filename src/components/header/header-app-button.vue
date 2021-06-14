@@ -1,6 +1,6 @@
 <template>
     <router-link to="/cart" class="button button--cart">
-        <span>520 ₽</span>
+        <span>{{totalPrice}} ₽</span>
         <div class="button__delimiter"></div>
         <svg
             width="18"
@@ -31,15 +31,21 @@
                 stroke-linejoin="round"
             />
         </svg>
-        <span>3</span>
+        <span>{{totalCount}}</span>
     </router-link>
 </template>
 
 <script>
   import {defineComponent} from "vue";
-
+    import { mapState } from 'vuex';
   export default defineComponent({
-    name: "header-app-button"
+    name: "header-app-button",
+    computed: {
+      ...mapState('cart', {
+        totalPrice: 'totalPrice',
+        totalCount: 'totalCount',
+      }),
+    }
   })
 </script>
 

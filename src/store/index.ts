@@ -1,11 +1,13 @@
 import { createStore } from 'vuex';
 import filter from './modules/filter';
 import product from './modules/product';
+import cart from './modules/cart';
 
 export default createStore({
   modules: {
     filter,
-    product
+    product,
+    cart
   }
 })
 /*

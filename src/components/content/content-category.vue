@@ -1,7 +1,7 @@
 <template>
     <div class="categories">
         <ul>
-            <li :class="{active: catItem.name === categoryActive}"
+            <li :class="{active: catItem.id === categoryActive}"
                 v-for="catItem in dataCategory"
                 @click="chooseCategory(catItem)"
                 :key="catItem.id">{{catItem.name}}</li>
@@ -29,15 +29,12 @@
     computed: {
       ...mapState('filter', {
         categoryActive: 'categoryActive',
-      }),
-      ...mapGetters('filter', {
-        category: 'category',
-      }),
+      })
     },
     methods: {
-      chooseCategory({name, id}) {
+      chooseCategory({id}) {
         this.$store.dispatch('filter/setChosenCategory', {
-          amount: name,
+          amount: id,
         });
         this.$store.dispatch('product/getProductsApi', {
           category: id
