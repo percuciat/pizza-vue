@@ -70,8 +70,17 @@
         this.activeSize = vSize
       },
       addProductToCart(p) {
-        this.countProduct = +this.countProduct + 1
+        this.countProduct = +this.countProduct + 1;
         this.$store.dispatch('cart/addProduct', {
+          idP: p.id,
+          id: p.name + this.countProduct,
+          name: p.name,
+          imageUrl: p.imageUrl,
+          size: this.activeSize,
+          sort: this.activeSort,
+          price: p.price
+        });
+        /*this.$store.dispatch('cart/addProduct', {
           id: p.name + this.countProduct,
           name: p.name,
           imageUrl: p.imageUrl,
@@ -79,7 +88,7 @@
           size: this.activeSize,
           sort: this.activeSort,
           price: p.price
-        });
+        });*/
       }
     }
   })

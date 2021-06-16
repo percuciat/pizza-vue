@@ -1,11 +1,8 @@
-
-
-
-
 interface Category {
     categoryActive: string;
     type: string;
 }
+
 interface Sort {
     sortActive: string;
     type: string;
@@ -16,7 +13,8 @@ interface commitType {
 }
 
 interface payloadCategory {
-    amount: any
+    amount: any,
+    name: string
 }
 
 interface payloadSort {
@@ -27,6 +25,7 @@ interface payloadSort {
 
 const state = () => ({
     categoryActive: null,
+    categoryNameActive: 'Все',
     sortActive: 'price',
     sortOrder: 'desc'
 });
@@ -42,10 +41,10 @@ const getters = {
 
 // actions
 const actions = {
-    setChosenCategory({ commit } : commitType, { amount } : payloadCategory) {
-        commit('changeCategory', amount);
+    setChosenCategory({commit}: commitType, {amount, name}: payloadCategory) {
+        commit('changeCategory', {amount, name});
     },
-    setChosenSort({commit} : commitType, {order, type} : payloadSort) {
+    setChosenSort({commit}: commitType, {order, type}: payloadSort) {
         commit('changeSortOrder', order);
         commit('changeSort', type);
     }
@@ -53,13 +52,14 @@ const actions = {
 
 // mutations
 const mutations = {
-    changeCategory (state: { categoryActive: string; }, chosenCategory: string) {
-        state.categoryActive = chosenCategory
+    changeCategory(state: { categoryActive: string; categoryNameActive: string }, chosenCategory: any) {
+        state.categoryActive = chosenCategory.amount;
+        state.categoryNameActive = chosenCategory.name;
     },
-    changeSort (state: { sortActive: string; }, chosenSort: string) {
+    changeSort(state: { sortActive: string; }, chosenSort: string) {
         state.sortActive = chosenSort
     },
-    changeSortOrder(state: {sortOrder: string}, order: string) {
+    changeSortOrder(state: { sortOrder: string }, order: string) {
         state.sortOrder = order
     }
 };

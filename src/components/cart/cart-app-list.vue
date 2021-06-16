@@ -1,10 +1,10 @@
 <template>
     <main>
         <ul class="content__items">
-            <cart-app-list-item
-                    v-for="cartItem in cart"
-                    :key="cartItem.id"
-                    :elCart="cartItem"/>
+           <cart-app-list-item
+                    v-for="[id, cartItems] in  Object.entries(cart)"
+                    :key="id"
+                    :elCart="cartItems"/>
         </ul>
     </main>
 </template>

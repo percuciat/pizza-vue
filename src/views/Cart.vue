@@ -1,6 +1,6 @@
 <template>
   <div class="container container--cart">
-    <cart-app-empty v-if="!cart.length" />
+    <cart-app-empty v-if="isEmptyCart" />
     <cart-app v-else/>
   </div>
 </template>
@@ -8,7 +8,7 @@
   import { defineComponent } from "vue";
   import CartApp from "@/components/cart/cart-app.vue";
   import CartAppEmpty from "@/components/cart/cart-app-empty.vue";
-  import { mapState } from "vuex";
+  import { mapGetters } from "vuex";
 
   export default defineComponent({
     name: "Cart",
@@ -17,9 +17,9 @@
       CartAppEmpty
     },
     computed: {
-      ...mapState('cart', {
-        cart: 'cart',
-      })
+      ...mapGetters('cart', {
+        isEmptyCart: 'isEmptyCart',
+      }),
     }
   })
 </script>

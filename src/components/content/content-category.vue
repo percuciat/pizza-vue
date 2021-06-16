@@ -32,9 +32,10 @@
       })
     },
     methods: {
-      chooseCategory({id}) {
+      chooseCategory({id, name}) {
         this.$store.dispatch('filter/setChosenCategory', {
           amount: id,
+          name
         });
         this.$store.dispatch('product/getProductsApi', {
           category: id

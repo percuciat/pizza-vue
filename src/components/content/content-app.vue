@@ -4,7 +4,7 @@
             <content-category/>
             <content-sort/>
         </div>
-        <h2 class="content__title">Все пиццы</h2>
+        <h2 class="content__title">{{categoryNameActive}} пиццы</h2>
         <ul class="content__items">
             <content-app-product-loading
                     v-if="isLoad"
@@ -45,7 +45,7 @@
     },
     computed: {
       ...mapState('filter', {
-        categoryActiveName: 'categoryActiveName',
+        categoryNameActive: 'categoryNameActive',
       }),
       ...mapGetters('product', {
         isLoad: 'isLoad',
