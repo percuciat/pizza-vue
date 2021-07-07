@@ -1,6 +1,7 @@
 <template>
     <div class="sort" ref="tree" >
-        <div class="sort__label" @click="setVisibleFilter">
+        <div class="sort__label"
+             @click="setVisibleFilter">
             <svg
                 class="icon"
                 :class="{active: isVisible}"
@@ -21,11 +22,11 @@
         <div v-show="isVisible"
              class="sort__popup">
             <ul>
-                <li v-for="sortItem in sortData"
-                    :class="{active: sortItem.type === sortActive}"
-                    @click="chooseSort(sortItem)"
-                    :key="sortItem.type">
-                    {{sortItem.name}}
+                <li v-for="opt in sortData"
+                    :class="{active: opt.type === activeOpt}"
+                    @click="makeChose(opt)"
+                    :key="opt.name">
+                    {{opt.name}}
                 </li>
             </ul>
         </div>
@@ -38,26 +39,21 @@
 
   export default defineComponent({
     name: "content-sort",
+    props: {
+      sortData: {
+        type: Array,
+        required: true
+      },
+      activeOpt: {
+        required: true
+      }
+    },
+    emits: {
+      chooseOption: null,
+    },
     data() {
       return {
         isVisible: false,
-        sortData: [
-          {
-            name: 'популярности',
-            type: 'rating',
-            order: 'desc'
-          },
-          {
-            name: 'цене',
-            type: 'price',
-            order: 'desc'
-          },
-          {
-            name: 'алфавиту',
-            type: 'name',
-            order: 'asc'
-          },
-        ],
       }
     },
     created() {
@@ -67,27 +63,25 @@
       document.body.removeEventListener('click', this.handleOutsideClick)
     },
     computed: {
-      ...mapState('filter', {
-        sortActive: 'sortActive'
-      }),
       ...mapGetters('filter', {
         sort: 'sort',
       }),
       getChosenNameSort() {
-        return this.sortData.find(el => el.type === this.$store.state.filter.sortActive)
+        return this.sortData.find(el => el.type === this.activeOpt)
       }
     },
     methods: {
       setVisibleFilter(){
         this.isVisible = !this.isVisible
       },
-      chooseSort({type, order}) {
+      makeChose(chosenOption){
         this.isVisible = !this.isVisible;
-        this.$store.dispatch('filter/setChosenSort', {
+        this.$emit('chooseOption', chosenOption)/*{
+          id,
+          name,
           type,
           order
-        });
-        this.$store.dispatch('product/getProductsApi')
+        }*/
       },
       handleOutsideClick(e) {
         if (this.isVisible) {

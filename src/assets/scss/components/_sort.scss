@@ -19,8 +19,8 @@
     }
 
     span {
-      color: $orange;
-      border-bottom: 1px dashed $orange;
+      color: $teal;
+      border-bottom: 1px dashed $teal;
       cursor: pointer;
     }
   }
@@ -49,9 +49,14 @@
 
         &.active {
           font-weight: bold;
-          color: $orange;
+          color: $teal;
         }
       }
     }
   }
+}
+@media screen and (max-width: 1170px) {
+ /* .sort{
+    margin-top: 1rem;
+  }*/
 }

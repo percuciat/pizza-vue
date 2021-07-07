@@ -1,4 +1,5 @@
 import api from '@/api'
+import { LOADING_STATUS, LOAD_PRODUCTS } from '../mutationTypes'
 
 
 interface Load {
@@ -30,25 +31,25 @@ const getters = {
 
 const actions = {
     async getProductsApi({ commit, rootState: { filter }}: ProductsApi) {
-        commit('loadingStatus', true);
+        commit('LOADING_STATUS', true);
         return api.getDataProduct({
             category: filter.categoryActive,
             type: filter.sortActive,
             order: filter.sortOrder
-        }).then(r => {
-            console.log('r---', r)
-            commit('loadingStatus', false);
-            commit('getProductsApi', r);
+        }).then((r) => {
+            commit('LOAD_PRODUCTS', r);
+        }).finally(() =>  {
+            commit('LOADING_STATUS', false)
         })
     }
 };
 
 // mutations
 const mutations = {
-    getProductsApi (state: { products: Array<any>; }, productsFromApi: Array<object>) {
+    LOAD_PRODUCTS (state: { products: Array<any>; }, productsFromApi: Array<object>) {
         state.products = productsFromApi
     },
-    loadingStatus (state: { isLoad: Boolean; }, newLoadingStatus: Boolean) {
+    LOADING_STATUS (state: { isLoad: Boolean; }, newLoadingStatus: Boolean) {
         state.isLoad = newLoadingStatus
     }
 };

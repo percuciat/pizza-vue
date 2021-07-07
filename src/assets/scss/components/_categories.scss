@@ -1,7 +1,7 @@
 @import '../variables';
 
 .categories {
-  ul {
+  .dots {
     display: flex;
 
     li {
@@ -28,4 +28,23 @@
       }
     }
   }
+  .labelMob{
+    display: none;
+  }
 }
+@media screen and (max-width: 1160px){
+  .categories {
+    .dots{
+      display: none;
+    }
+    .labelMob{
+      display: block;
+    }
+  }
+}
+@media screen and (max-width: 400px){
+  .categories{
+    margin-bottom: .5rem;
+  }
+}
+

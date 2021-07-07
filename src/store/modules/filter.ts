@@ -1,3 +1,5 @@
+import { CHANGE_CATEGORY, CHANGE_ORDER, CHANGE_SORT } from '../mutationTypes'
+
 interface Category {
     categoryActive: string;
     type: string;
@@ -42,24 +44,25 @@ const getters = {
 // actions
 const actions = {
     setChosenCategory({commit}: commitType, {amount, name}: payloadCategory) {
-        commit('changeCategory', {amount, name});
+        commit('CHANGE_CATEGORY', {amount, name});
     },
     setChosenSort({commit}: commitType, {order, type}: payloadSort) {
-        commit('changeSortOrder', order);
-        commit('changeSort', type);
+        commit('CHANGE_SORT', order);
+        commit('CHANGE_ORDER', type);
     }
 };
 
 // mutations
 const mutations = {
-    changeCategory(state: { categoryActive: string; categoryNameActive: string }, chosenCategory: any) {
+    CHANGE_CATEGORY(state: { categoryActive: string; categoryNameActive: string }, chosenCategory: any) {
+        console.log('categoryNameActive', state.categoryNameActive);
         state.categoryActive = chosenCategory.amount;
         state.categoryNameActive = chosenCategory.name;
     },
-    changeSort(state: { sortActive: string; }, chosenSort: string) {
+    CHANGE_ORDER(state: { sortActive: string; }, chosenSort: string) {
         state.sortActive = chosenSort
     },
-    changeSortOrder(state: { sortOrder: string }, order: string) {
+    CHANGE_SORT(state: { sortOrder: string }, order: string) {
         state.sortOrder = order
     }
 };

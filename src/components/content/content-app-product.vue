@@ -8,11 +8,12 @@
         <h4 class="pizza-block__title">{{product.name}}</h4>
         <div class="pizza-block__selector">
             <ul>
-                <li :class="{active: product.types[activeSort] == ind,
+                <li :class="{active: product.types[activeType] == ind,
                             disable: product.types.findIndex(el => el == ind) < 0 }"
-                    @click="chooseSort(ind)"
-                    v-for="[ind, sort] in Object.entries(availableTypes)">
-                    {{sort}} </li>
+                    @click="chooseType(ind)"
+                    v-for="[ind, type] in Object.entries(availableTypes)">
+                            {{type}}
+                </li>
             </ul>
             <ul>
                 <li :class="{active: activeSize == ind}"
@@ -22,7 +23,8 @@
         </div>
         <div class="pizza-block__bottom">
             <div class="pizza-block__price">от {{product.price}} ₽</div>
-            <button class="button button--outline button--add" @click="addProductToCart(product)">
+            <button class="button button--outline button--add"
+                    @click="addProductToCart(product)">
                 <svg
                     width="12"
                     height="12"
@@ -44,6 +46,7 @@
 
 <script>
   import {defineComponent} from "vue";
+  import { mapActions } from "vuex";
 
   export default defineComponent({
     name: "content-app-product",
@@ -57,38 +60,31 @@
       return {
         countProduct: '',
         activeSize: 0,
-        activeSort: 0,
+        activeType: 0,
         availableSizes: [26, 30, 40],
         availableTypes: ['тонкое', 'традиционное']
       }
     },
     methods: {
-      chooseSort(vSort) {
-        this.activeSort = vSort
+      chooseType(vSort) {
+        this.activeType = vSort
       },
       chooseSize(vSize) {
         this.activeSize = vSize
       },
-      addProductToCart(p) {
+      ...mapActions('cart',{
+        addProduct: 'addProduct'
+      }),
+      addProductToCart(productChosen) {
         this.countProduct = +this.countProduct + 1;
-        this.$store.dispatch('cart/addProduct', {
-          idP: p.id,
-          id: p.name + this.countProduct,
-          name: p.name,
-          imageUrl: p.imageUrl,
-          size: this.activeSize,
-          sort: this.activeSort,
-          price: p.price
+        this.addProduct({
+          idP: productChosen.name,
+          id: Date.now(),
+          imageUrl: productChosen.imageUrl,
+          sizeProduct: this.availableSizes[this.activeSize],
+          typeProduct: this.availableTypes[this.activeType],
+          price: productChosen.price
         });
-        /*this.$store.dispatch('cart/addProduct', {
-          id: p.name + this.countProduct,
-          name: p.name,
-          imageUrl: p.imageUrl,
-          count: this.countProduct,
-          size: this.activeSize,
-          sort: this.activeSort,
-          price: p.price
-        });*/
       }
     }
   })

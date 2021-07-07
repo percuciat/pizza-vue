@@ -12,9 +12,9 @@
 
                 <span>Вернуться назад</span>
             </router-link>
-            <div class="button pay-btn">
+            <button class="button pay-btn">
                 <span>Оплатить сейчас</span>
-            </div>
+            </button>
         </div>
     </footer>
 </template>
