@@ -47,22 +47,21 @@ const actions = {
         commit('CHANGE_CATEGORY', {amount, name});
     },
     setChosenSort({commit}: commitType, {order, type}: payloadSort) {
-        commit('CHANGE_SORT', order);
-        commit('CHANGE_ORDER', type);
+        commit('CHANGE_ORDER', order);
+        commit('CHANGE_SORT', type);
     }
 };
 
 // mutations
 const mutations = {
     CHANGE_CATEGORY(state: { categoryActive: string; categoryNameActive: string }, chosenCategory: any) {
-        console.log('categoryNameActive', state.categoryNameActive);
         state.categoryActive = chosenCategory.amount;
         state.categoryNameActive = chosenCategory.name;
     },
-    CHANGE_ORDER(state: { sortActive: string; }, chosenSort: string) {
+    CHANGE_SORT(state: { sortActive: string; }, chosenSort: string) {
         state.sortActive = chosenSort
     },
-    CHANGE_SORT(state: { sortOrder: string }, order: string) {
+    CHANGE_ORDER(state: { sortOrder: string }, order: string) {
         state.sortOrder = order
     }
 };

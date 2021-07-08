@@ -72,7 +72,6 @@
         this.minusProduct(product)
       },
       remove(obj) {
-        console.log(obj)
         this.removeProduct(obj)
       }
     }

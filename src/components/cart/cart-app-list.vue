@@ -1,7 +1,8 @@
 <template>
     <main>
         <ul class="cart__commonList">
-                <li class="cart__commonList-item"  v-for="[key, cartItemCollection] in Object.entries(cart)"
+                <li class="cart__commonList-item"
+                    v-for="[key, cartItemCollection] in Object.entries(cart)"
                      :key="key">
                     <h3>{{key}}</h3>
                     <ul class="content__items">

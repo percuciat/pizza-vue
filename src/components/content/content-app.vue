@@ -82,7 +82,7 @@
           type,
           order
         });
-        this.$store.dispatch('product/getProductsApi')
+        this.$store.dispatch('product/getProductsApi');
       },
     }
   })

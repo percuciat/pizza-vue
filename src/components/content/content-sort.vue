@@ -76,12 +76,7 @@
       },
       makeChose(chosenOption){
         this.isVisible = !this.isVisible;
-        this.$emit('chooseOption', chosenOption)/*{
-          id,
-          name,
-          type,
-          order
-        }*/
+        this.$emit('chooseOption', chosenOption)
       },
       handleOutsideClick(e) {
         if (this.isVisible) {

@@ -6,19 +6,43 @@
                 <router-view/>
             </div>
         </main>
+        <modal-app />
+        <preloader-app v-if="loader"/>
     </div>
 </template>
 
-<script lang="ts">
-    import {defineComponent} from 'vue';
-    import HeaderApp from '@/components/header/header-app.vue';
+<script>
+  import { defineComponent } from 'vue';
+  import { mapActions, mapState } from 'vuex';
+  import HeaderApp from '@/components/header/header-app.vue';
+  import ModalApp from '@/components/other/modal-app.vue';
+  import PreloaderApp from '@/components/other/preloader-app.vue';
 
-    export default defineComponent({
-        name: 'App',
-        components: {
-            HeaderApp,
-        },
-    });
+  export default defineComponent({
+    name: 'App',
+    components: {
+      HeaderApp,
+      ModalApp,
+      PreloaderApp
+    },
+    mounted() {
+      //this.$store.commit('cart/INIT_LOCAL_STORAGE')
+      this.initStorage();
+    },
+    computed: {
+      ...mapState('common', {
+        loader: 'loader'
+      })
+    },
+    methods: {
+      ...mapActions('cart', {
+        initLocalStorageCart: 'initLocalStorageCart'
+      }),
+      initStorage() {
+        this.initLocalStorageCart()
+      }
+    }
+  });
 </script>
 
 <style lang="scss">
@@ -54,10 +78,11 @@
         max-width: 1400px;
     }
 
-    .cartInfo{
+    .cartInfo {
         display: flex;
         align-items: center;
     }
+
     .hero-title {
         color: #181818;
         font-size: 24px;
@@ -358,15 +383,15 @@
                 width: 300px;
                 margin: 45px auto 60px;
             }
-
-            .button--black {
-                padding: 12px 0 14px;
-                width: 230px;
-                margin: 0 auto;
-                font-weight: 600;
-                font-size: 18px;
-            }
         }
+    }
+
+    .button--black {
+        padding: 12px 0 14px;
+        width: 230px;
+        margin: 0 auto;
+        font-weight: 600;
+        font-size: 18px;
     }
 
     .cart__commonList {
@@ -390,6 +415,192 @@
         .textBtnMob {
             display: none;
         }
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        bottom: 0;
+        background: rgba(0, 0, 0, .3);
+        display: block;
+        padding-left: 0;
+    }
+
+    .modal-dialog.hide{
+        animation: hideModalAnimation .3s ease-in;
+    }
+    .modal-dialog {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 550px;
+        animation: showModalAnimation .3s ease-in;
+    }
+
+    .form-modal {
+        display: grid;
+        padding: 2rem 0 0;
+        row-gap: 1rem;
+        &__error{
+            padding: .5rem 0;
+            display: block;
+            color: red;
+            text-align: left;
+        }
+        &__block {
+            display: flex;
+            column-gap: 1rem;
+        }
+
+        &__block--grid {
+            display: grid;
+            row-gap: .7rem;
+            justify-content: start;
+            .text{
+                text-align: left;
+            }
+        }
+
+        &__textarea {
+            padding: .4rem;
+            width: 270px;
+            height: 100px;
+            resize: none;
+            border-radius: 10px;
+            border: 2px solid $teal;
+            &::placeholder{
+
+            }
+        }
+
+        &__detail-list{
+            grid-row-gap: .3rem;
+            display: grid;
+
+        }
+        .detail-item{
+            text-align: left;
+            color: black;
+        }
+        .mark-text{
+            font-weight: 700;
+            color: $teal;
+        }
+        .text {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: white;
+            color: $teal;
+            font-size: 1rem;
+            font-weight: 700;
+            &--alt{
+                color: black;
+            }
+            &--radio {
+                border: 3px solid $teal;
+            }
+        }
+
+        .form-modal__input:checked + .text {
+            color: white;
+            background: $teal;
+        }
+
+        &__radio {
+            background: white;
+            font-weight: 300;
+            font-size: 15px;
+            line-height: 22px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        &__input {
+            position: absolute;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            &--text{
+                width: 270px;
+                padding: 12px .6rem;
+                border-radius: 10px;
+                border: 2px solid #42B983;
+            }
+        }
+        &__btn{
+            margin: 1rem auto 0;
+            line-height: 23px;
+            padding: 12px 25px;
+        }
+    }
+
+    .modal-dialog {
+        .modal-content {
+            background: white;
+            text-align: center;
+            border-radius: 20px;
+
+            .modal-body {
+                padding: 60px 30px 50px;
+
+                .title {
+                    color: black;
+                    font-size: 32px;
+                    line-height: 32px;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    margin: 0 0 10px;
+                }
+
+                .description {
+                    color: #fff;
+                    font-size: 14px;
+                    letter-spacing: 0.5px;
+                    margin: 0 0 30px;
+                }
+            }
+
+            .close {
+                z-index: 2;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 25px;
+                width: 25px;
+                color: black;
+                font-size: 40px;
+                background: white;
+                border: none;
+                line-height: 25px;
+                transition: all 0.3s ease 0s;
+                cursor: pointer;
+
+                span {
+                    margin-top: -10px;
+                }
+
+                &:hover {
+                    color: #fff;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+
+            }
+        }
+
     }
 
     @media screen and (max-width: 1060px) {
@@ -447,6 +658,7 @@
                 grid-column-gap: 1rem;
 
             }
+
             .cart__item-remove,
             .cart__item-img,
             .cart__item-info,
@@ -502,6 +714,10 @@
             }
         }
 
+        .modal-dialog {
+            width: 95%;
+        }
+
 
     }
 
@@ -510,42 +726,48 @@
             grid-template-columns: 1fr;
         }
         .cart__bottom-buttons {
-           display: grid;
+            display: grid;
             row-gap: 1rem;
             grid-row-gap: 1rem;
             justify-content: center;
-            .pay-btn{
+
+            .pay-btn {
                 order: 1;
             }
-            .go-back-btn{
+
+            .go-back-btn {
                 order: 2;
             }
         }
         .cart__commonList-item {
-            .cart__item-count{
+            .cart__item-count {
                 grid-area: 1 / 2  / 2 / 4;
                 justify-content: space-evenly;
             }
-            .cart__item-price{
+
+            .cart__item-price {
                 grid-area: 2 / 1  / 3 / 2;
             }
+
             .cart__item-info {
                 grid-area: 2 / 2  / 3 / 3;
             }
         }
-        .cart__clear span{
+        .cart__clear span {
             font-size: .9rem;
         }
-        .cart__bottom-details span{
+        .cart__bottom-details span {
             font-size: .9rem;
         }
     }
+
     @media screen and (max-width: 400px) {
-        .button--cart{
+        .button--cart {
             display: grid;
             row-gap: .3rem;
             grid-row-gap: .3rem;
-            .button__delimiter{
+
+            .button__delimiter {
                 display: none;
             }
         }

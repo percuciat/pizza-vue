@@ -12,7 +12,8 @@
 
                 <span>Вернуться назад</span>
             </router-link>
-            <button class="button pay-btn">
+            <button class="button pay-btn"
+                    @click="openModal()">
                 <span>Оплатить сейчас</span>
             </button>
         </div>
@@ -21,7 +22,7 @@
 
 <script>
   import {defineComponent} from "vue";
-  import { mapState } from "vuex";
+  import {mapActions, mapState} from "vuex";
   export default defineComponent({
     name: "cart-app-footer",
     computed: {
@@ -29,6 +30,15 @@
         totalPrice: 'totalPrice',
         totalCount: 'totalCount'
       })
+    },
+    methods: {
+      ...mapActions('common', {
+        modalAction: 'modalAction'
+      }),
+      openModal() {
+        console.log('click')
+        this.modalAction(true)
+      },
     }
   })
 </script>

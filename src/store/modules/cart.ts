@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, PLUS_PRODUCT, RESET_CART, REMOVE_PRODUCT } from '../mutationTypes';
+import { ADD_PRODUCT, PLUS_PRODUCT, RESET_CART, REMOVE_PRODUCT, RESET_LOCAL_STORAGE } from '../mutationTypes';
 
 interface commitType {
     commit: (arg0: string, arg1: any) => void
@@ -33,41 +33,53 @@ const getters = {
     },
     isEmptyCart: (state: any) => {
         return !Object.keys(state.cart).length
-    }
+    },
 };
 
 // actions
 const actions = {
-    addProduct({ commit } : commitType, { ...product } : any) {
+    initLocalStorageCart({commit} :any) {
+        commit('INIT_LOCAL_STORAGE');
+    },
+    addProduct({ commit } : any, { ...product } : any) {
         commit('ADD_PRODUCT', product);
         commit('INCREASE_TOTAL', {
             price: product.price,
             count: 1
         });
+        commit('SET_LOCAL_STORAGE_CART');
+        commit('SET_LOCAL_STORAGE_TOTAL');
     },
-    plusProduct({ commit } : commitType, { ...product } : any){
+    plusProduct({ commit } : any, { ...product } : any){
         commit('PLUS_PRODUCT', product);
         commit('INCREASE_TOTAL', {
             price: product.price,
             count: 1
         });
+        commit('SET_LOCAL_STORAGE_CART');
+        commit('SET_LOCAL_STORAGE_TOTAL');
     },
-    minusProduct({ commit } : commitType, { ...product } : any){
+    minusProduct({ commit } : any, { ...product } : any){
         commit('MINUS_PRODUCT', product);
         commit('DECREASE_TOTAL', {
             price: product.price,
             count: 1
         });
+        commit('SET_LOCAL_STORAGE_CART');
+        commit('SET_LOCAL_STORAGE_TOTAL');
     },
-    resetCart({ commit } : commitType ) {
+    resetCart({ commit } : any ) {
         commit('RESET_CART', {});
+        commit('RESET_LOCAL_STORAGE');
     },
-    removeProduct({ commit } : commitType, obj : any) {
+    removeProduct({ commit } : any, obj : any) {
         commit('DECREASE_TOTAL', {
             price: obj.sum,
             count: obj.countSame
         });
         commit('REMOVE_PRODUCT', obj);
+        commit('SET_LOCAL_STORAGE_CART');
+        commit('SET_LOCAL_STORAGE_TOTAL');
     }
 };
 
@@ -92,7 +104,6 @@ const mutations = {
                 state.cart[addedProduct.idP].push(addedProduct)
             }
         }
-        console.log('state.cart--', state.cart)
     },
     PLUS_PRODUCT(state: cartMutation, product: any) {
         state.cart[product.idP].forEach((item: any) => {
@@ -101,6 +112,7 @@ const mutations = {
                 item.sum += product.price;
             }
         });
+        console.log('state.cart--', state.cart)
     },
     MINUS_PRODUCT(state: cartMutation, product: any) {
         state.cart[product.idP].forEach((item: any) => {
@@ -134,6 +146,22 @@ const mutations = {
     DECREASE_TOTAL (state: cartMutation, obj: any){
         state.totalPrice -= obj.price;
         state.totalCount -= obj.count;
+    },
+    SET_LOCAL_STORAGE_CART (state: cartMutation) {
+        localStorage.setItem('list-cart', JSON.stringify(state.cart));
+    },
+    SET_LOCAL_STORAGE_TOTAL(state: any){
+        localStorage.setItem('list-sum', JSON.stringify({price: state.totalPrice, totalCount: state.totalCount}));
+    },
+    RESET_LOCAL_STORAGE(state: any){
+        localStorage.clear();
+    },
+    INIT_LOCAL_STORAGE(state: cartMutation){
+        const items = localStorage.getItem('list-cart');
+        const sum = localStorage.getItem('list-sum');
+        state.cart = items ? JSON.parse(<string>items) : {};
+        state.totalPrice = sum ? JSON.parse(<string>sum).price : 0;
+        state.totalCount = sum ? JSON.parse(<string>sum).totalCount : 0;
     }
 };
 
