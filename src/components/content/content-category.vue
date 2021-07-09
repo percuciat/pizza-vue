@@ -16,7 +16,7 @@
 
 <script>
   import { defineComponent } from "vue";
-  import { mapState } from "vuex";
+  import { mapState, mapActions } from "vuex";
   import ContentSort from "./content-sort.vue";
 
   export default defineComponent({
@@ -42,11 +42,15 @@
       })
     },
     methods: {
+      ...mapActions('filter',{
+        setChosenCategory: 'setChosenCategory'
+      }),
       chooseCategory({id, name}) {
-        this.$store.dispatch('filter/setChosenCategory', {
+        this.setChosenCategory({
           amount: id,
           name
         });
+        // this.$store.dispatch('filter/setChosenCategory', );
         this.$store.dispatch('product/getProductsApi', {
           category: id
         })

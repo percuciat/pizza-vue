@@ -132,7 +132,7 @@
       },
 
       checkForm() {
-        if(this.contactText.length >= 11){
+        if(this.contactText.trim().length >= 11){
           this.sendModalForm(true);
           this.reset()
         } else {

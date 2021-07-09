@@ -36,7 +36,6 @@
         modalAction: 'modalAction'
       }),
       openModal() {
-        console.log('click')
         this.modalAction(true)
       },
     }
