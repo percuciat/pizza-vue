@@ -3,8 +3,7 @@
         <content-category />
         <content-sort :sortData="sortData"
                       @chooseOption="chooseSort"
-                        :activeOpt="sortActive">
-        </content-sort>
+                        :activeOpt="sortActive" />
     </div>
     <h2 class="content__title">{{categoryNameActive}} пиццы</h2>
     <ul class="content__items">

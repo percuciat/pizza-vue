@@ -15,7 +15,8 @@
                 <path d="M11.6666 9.16667V14.1667" stroke="#B6B6B6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
 
-            <span @click="reset">Очистить корзину</span>
+            <button class="reset-button"
+                    @click="reset()">Очистить корзину</button>
         </div>
     </header>
 </template>
@@ -35,7 +36,7 @@
         resetCart: 'resetCart'
       }),
       reset() {
-        this.resetCart()
+        this.resetCart();
       }
     }
   })

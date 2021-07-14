@@ -1,8 +1,8 @@
 <template>
     <footer class="cart__bottom">
         <div class="cart__bottom-details">
-            <span> Всего пицц: <b>{{totalCount}} шт.</b> </span>
-            <span> Сумма заказа: <b>{{totalPrice}} ₽</b> </span>
+            <span class="cart__bottom-details-count"> Всего пицц: <b>{{count}} шт.</b> </span>
+            <span class="cart__bottom-details-price"> Сумма заказа: <b>{{price}} ₽</b> </span>
         </div>
         <div class="cart__bottom-buttons">
             <router-link to="/" class="button button--outline button--add go-back-btn">
@@ -21,16 +21,10 @@
 </template>
 
 <script>
-  import {defineComponent} from "vue";
-  import {mapActions, mapState} from "vuex";
+  import { defineComponent } from "vue";
+  import { mapActions } from "vuex";
   export default defineComponent({
     name: "cart-app-footer",
-    computed: {
-      ...mapState('cart', {
-        totalPrice: 'totalPrice',
-        totalCount: 'totalCount'
-      })
-    },
     methods: {
       ...mapActions('common', {
         modalAction: 'modalAction'
@@ -38,6 +32,12 @@
       openModal() {
         this.modalAction(true)
       },
+    },
+    data() {
+      return {
+        price: this.$store.state.totalPrice,
+        count: this.$store.state.totalCount
+      }
     }
   })
 </script>
