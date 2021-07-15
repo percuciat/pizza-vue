@@ -54,7 +54,7 @@ const actions = {
 
 // mutations
 const mutations = {
-    CHANGE_CATEGORY(state: { categoryActive: string; categoryNameActive: string }, chosenCategory: any) {
+    CHANGE_CATEGORY(state: { categoryActive: any; categoryNameActive: string }, chosenCategory: any) {
         state.categoryActive = chosenCategory.amount;
         state.categoryNameActive = chosenCategory.name;
     },

@@ -4,8 +4,9 @@ interface commitType {
     commit: (arg0: string, arg1: any) => void
 }
 
-interface productType {
-    product: any
+interface totalMutation {
+    totalPrice: number,
+    totalCount: number,
 }
 
 interface newCartType {
@@ -15,8 +16,6 @@ interface newCartType {
 
 interface cartMutation {
     cart: any;
-    totalPrice: number,
-    totalCount: number
 }
 
 const state = () => ({
@@ -128,7 +127,7 @@ const mutations = {
             }
         });
     },
-    RESET_CART (state: cartMutation, emptyCart: object ) {
+    RESET_CART (state: any, emptyCart: object ) {
         state.cart = emptyCart;
         state.totalPrice = 0;
         state.totalCount = 0;
@@ -139,11 +138,11 @@ const mutations = {
             delete state.cart[product.idP]
         }
     },
-    INCREASE_TOTAL (state: cartMutation, obj: any){
+    INCREASE_TOTAL (state: totalMutation, obj: any){
         state.totalPrice += obj.price;
         state.totalCount += obj.count;
     },
-    DECREASE_TOTAL (state: cartMutation, obj: any){
+    DECREASE_TOTAL (state: totalMutation, obj: any){
         state.totalPrice -= obj.price;
         state.totalCount -= obj.count;
     },
@@ -156,7 +155,7 @@ const mutations = {
     RESET_LOCAL_STORAGE(state: any){
         localStorage.clear();
     },
-    INIT_LOCAL_STORAGE(state: cartMutation){
+    INIT_LOCAL_STORAGE(state: any){
         const items = localStorage.getItem('list-cart');
         const sum = localStorage.getItem('list-sum');
         state.cart = items ? JSON.parse(<string>items) : {};
