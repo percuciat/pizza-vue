@@ -26,7 +26,7 @@
     },
     data() {
       return {
-        cartVuex: this.$store.state.cart
+        cartVuex: this.$store.state.cart.cart
       }
     }
   });

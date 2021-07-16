@@ -3,8 +3,8 @@ import product from "@/store/modules/product";
 describe('check PRODUCT Mutations', () => {
     it('LOAD_PRODUCTS', () => {
         const categoryFake = [
-            {name: 'losixa2'},
-            {name: 'losixa2'}
+            {name: 'pizza2'},
+            {name: 'pizza322'}
         ];
         const state = {
             products: []
@@ -12,8 +12,8 @@ describe('check PRODUCT Mutations', () => {
         product.mutations.LOAD_PRODUCTS(state, categoryFake);
         expect(state).toEqual({
             products: [
-                {name: 'losixa2'},
-                {name: 'losixa2'}
+                {name: 'pizza2'},
+                {name: 'pizza322'}
             ],
         });
     });

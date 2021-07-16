@@ -163,7 +163,10 @@
             align-items: center;
             cursor: pointer;
             @include noselect();
-
+            background-color: transparent;
+            &:hover{
+                background-color: transparent;
+            }
             span {
                 display: inline-block;
                 margin-left: 7px;
