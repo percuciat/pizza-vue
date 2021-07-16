@@ -8,6 +8,7 @@
     "test:unit": "vue-cli-service test:unit",
     "server": "npx json-server --watch public/db.json --port 3003"
   },
+  "proxy": "https://my-json-server.typicode.com/percuciat/pizza-db",
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
