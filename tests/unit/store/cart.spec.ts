@@ -1,4 +1,23 @@
-import cart from "@/store/modules/cart";
+import cart from '@/store/modules/cart';
+
+
+describe('check CART Getters', () => {
+    it('isEmptyCart TRUE', () => {
+        const cartItemFake = {
+            cart: {}
+        };
+        const actual = cart.getters.isEmptyCart(cartItemFake);
+        expect(actual).toEqual(true);
+    });
+
+    it('isEmptyCart FALSE', () => {
+        const cartItemFake =  {
+            cart: {name: 'notEmpty'}
+        };
+        const actual = cart.getters.isEmptyCart(cartItemFake);
+        expect(actual).toEqual(false);
+    });
+});
 
 
 describe('check CART Mutations', () => {

@@ -37,7 +37,7 @@ const getters = {
 
 // actions
 const actions = {
-    initLocalStorageCart({commit} :any) {
+    initLocalStorageCart({commit} : any) {
         commit('INIT_LOCAL_STORAGE');
     },
     addProduct({ commit } : any, { ...product } : any) {

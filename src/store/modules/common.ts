@@ -35,7 +35,7 @@ const actions = {
         commit('LOADER_ACTION', payload);
         setTimeout(() => {
             commit('LOADER_ACTION', false);
-        }, 4000)
+        }, 4000);
     }
 };
 

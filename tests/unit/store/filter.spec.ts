@@ -1,6 +1,24 @@
-import filter from "@/store/modules/filter";
+import filter from '@/store/modules/filter';
 
-describe('check FILTER Mutations', () => {
+
+describe('FILTER ACTIONS', () => {
+    it('setChosenCategory', async () => {
+        const commit = jest.fn();
+        const fakePayload = {
+            amount: 22,
+            name: 'pizza the best'
+        };
+
+
+        await filter.actions.setChosenCategory({ commit }, fakePayload);
+        expect(commit).toHaveBeenCalledWith('CHANGE_CATEGORY', fakePayload)
+    });
+
+});
+
+
+
+describe('FILTER MUTATIONS', () => {
 
     it('CHANGE_CATEGORY', () => {
         const categoryFake = {
