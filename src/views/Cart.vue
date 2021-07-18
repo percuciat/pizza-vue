@@ -1,8 +1,6 @@
 <template>
-  <div class="container--cart">
     <cart-app-empty v-if="isEmptyCart" />
     <cart-app v-else/>
-  </div>
 </template>
 <script>
   import { defineComponent } from "vue";

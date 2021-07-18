@@ -1,11 +1,8 @@
 <template>
     <router-link to="/cart" class="button button--cart">
-        <span>{{totalPrice}} ₽</span>
-        <div class="button__delimiter"></div>
-        <div class="cartInfo">
-            <svg
-                    width="18"
-                    height="18"
+        <span class="button-text">{{totalPrice}} ₽</span>
+        <div class="button-wrapper">
+            <svg    class="button-icon"
                     viewBox="0 0 18 18"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +29,7 @@
                         stroke-linejoin="round"
                 />
             </svg>
-            <span>{{totalCount}}</span>
+            <span class="button-text">{{totalCount}}</span>
         </div>
     </router-link>
 </template>
@@ -51,7 +48,3 @@
     }
   })
 </script>
-
-<style scoped>
-
-</style>

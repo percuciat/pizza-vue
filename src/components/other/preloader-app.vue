@@ -23,7 +23,3 @@
     name: "preloader-app"
   })
 </script>
-
-<style scoped>
-
-</style>

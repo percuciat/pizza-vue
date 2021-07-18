@@ -19,7 +19,3 @@
     name: "cart-app-empty"
   })
 </script>
-
-<style scoped>
-
-</style>
