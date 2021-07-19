@@ -2,9 +2,7 @@
     <div class="wrapper">
         <header-app/>
         <main>
-            <div class="container">
-                <router-view/>
-            </div>
+            <router-view/>
         </main>
         <footer>
             this is footer

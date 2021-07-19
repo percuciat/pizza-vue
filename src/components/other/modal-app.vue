@@ -65,7 +65,7 @@
                             </ul>
                         </div>
                         <button class="form-modal__btn button button--black">
-                            <span>Заказать</span>
+                            <span class="button-text">Заказать</span>
                         </button>
                     </form>
                 </div>

@@ -148,72 +148,58 @@
     display: none;
   }
 }
+
+
 /* button--black ----*/
+
 .button--black {
-  padding: 12px 0 14px;
-  width: 230px;
   margin: 0 auto;
-  font-weight: 600;
-  font-size: 18px;
+  display: block;
+  background-color: $black;
+
+  .button-text{
+    color: #fff;
+  }
 
   &:hover,
   &:active {
     background-color: lighten($color: $black, $amount: 10);
   }
+
 }
 
-
-
-
-
-.go-back-btn {
+/* button--back ----*/
+.button--transparent {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 210px;
+  background-color: transparent;
+  border: 2px solid darken($color: $gray-line, $amount: 10);
 
-  border-color: darken($color: $gray-line, $amount: 10);
-
-  span {
+  .button-text {
+    font-size: 1rem;
     color: darken($color: $gray-line, $amount: 20);
-    font-weight: 500;
+  }
+  .button-icon {
+    width: .5rem;
+    path {
+      fill: transparent;
+      stroke-width: 2;
+    }
   }
 
   &:hover {
     background-color: darken($color: $gray-line, $amount: 90);
     border-color: darken($color: $gray-line, $amount: 90);
 
-    span {
+    .button-text {
       color: $gray-line;
     }
   }
-
-  svg {
-    margin-right: 12px;
-
-    path {
-      fill: transparent;
-      stroke-width: 2;
-    }
+}
+.button--reset{
+  .button-icon {
+    width: 1rem;
   }
 }
 
-.cart-buttons{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-}
-
-.pay-btn {
-  font-size: 16px;
-  font-weight: 600;
-  width: 210px;
-  padding: 16px;
-}
-
-@media screen and (max-width: 400px) {
-  .button--cart {
-    min-width: 130px;
-    padding: 6px 12px;
-  }
-}

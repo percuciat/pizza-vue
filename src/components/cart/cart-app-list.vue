@@ -1,16 +1,16 @@
 <template>
     <main>
-        <ul class="cart__commonList">
-                <li class="cart__commonList-item"
-                    v-for="[key, cartItemCollection] in Object.entries(cartVuex)"
-                     :key="key">
-                    <h3>{{key}}</h3>
-                    <ul class="content__items">
-                        <cart-app-list-item
-                                :key="cartItemCollection.id"
-                                :elCart="cartItemCollection"/>
-                    </ul>
-                </li>
+        <ul class="cart__list">
+            <li class="cart__list-item"
+                v-for="[key, cartItemCollection] in Object.entries(cartVuex)"
+                 :key="key">
+                <h3 class="title">{{key}}</h3>
+                <ul class="list">
+                    <cart-app-list-item
+                            :key="cartItemCollection.id"
+                            :elCart="cartItemCollection"/>
+                </ul>
+            </li>
         </ul>
     </main>
 </template>
