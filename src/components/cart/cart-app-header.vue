@@ -10,6 +10,7 @@
             </svg>
             Корзина</h2>
         <button class="button button--transparent button--reset"
+                title="reset cart"
                 @click="reset()">
             <svg class="button-icon"
                  viewBox="0 0 20 20"

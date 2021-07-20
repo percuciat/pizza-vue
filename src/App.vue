@@ -5,7 +5,7 @@
             <router-view/>
         </main>
         <footer>
-            this is footer
+
         </footer>
         <modal-app />
         <preloader-app v-if="loader"/>

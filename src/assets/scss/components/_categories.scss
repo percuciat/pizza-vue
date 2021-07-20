@@ -2,17 +2,19 @@
 
 .categories {
   .dots {
-    display: flex;
-
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 190px));
+    column-gap: .7rem;
+    row-gap: .7rem;
+    grid-row-gap: .7rem;
+    grid-column-gap: .7rem;
     li {
       background-color: #f9f9f9;
       padding: 13px 30px;
       border-radius: 30px;
-      margin-right: 10px;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.1s ease-in-out;
-      @include noselect();
 
       &:hover {
         background-color: darken(#f9f9f9, 2%);
@@ -34,17 +36,13 @@
 }
 @media screen and (max-width: 1160px){
   .categories {
+    justify-self: left;
     .dots{
       display: none;
     }
     .labelMob{
       display: block;
     }
-  }
-}
-@media screen and (max-width: 400px){
-  .categories{
-    margin-bottom: .5rem;
   }
 }
 

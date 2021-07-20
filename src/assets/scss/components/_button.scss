@@ -51,6 +51,7 @@
 .button--add {
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: transparent;
   border: 2px solid $teal;
   .button-icon path{
@@ -200,6 +201,48 @@
 .button--reset{
   .button-icon {
     width: 1rem;
+
+  }
+  .button-icon--cross{
+    display: none;
+    transform: rotate(45deg);
+    path {
+      fill: #d0d0d0;
+    }
+  }
+}
+
+
+@media screen and (max-width: 570px){
+  .button{
+    padding: .5rem .8rem;
+  }
+  .button--circle {
+    padding: .5rem;
+  }
+
+}
+@media screen and (max-width: 500px){
+  .button--add {
+    .button-icon {
+      margin-right: 0;
+    }
+    .button-text {
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 400px){
+  .button--reset{
+    .button-icon--cross{
+      display: block;
+    }
+    .button-icon {
+      margin-right: 0;
+    }
+    .button-text {
+      display: none;
+    }
   }
 }
 

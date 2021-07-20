@@ -16,6 +16,7 @@
                 <span class="button-text">Вернуться назад</span>
             </router-link>
             <button class="button button--add"
+                    title="pay"
                     @click="openModal()">
                 <span class="button-text">Оплатить сейчас</span>
             </button>

@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-modal__block">
                             <label class="form-modal__label">
-                                <span class="form-modal__error" v-show="isError">Заполните, пожалуйста, поле.</span>
+                                <span class="form-modal__error" v-show="isError">Заполните, пожалуйста, поле. (больше 11 символов)</span>
                                 <input class="form-modal__input--text"
                                        type="text"
                                        required
