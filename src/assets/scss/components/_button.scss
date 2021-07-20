@@ -223,12 +223,18 @@
 
 }
 @media screen and (max-width: 500px){
+
   .button--add {
     .button-icon {
       margin-right: 0;
     }
     .button-text {
       display: none;
+    }
+  }
+  .button--modal{
+    .button-text {
+      display: block;
     }
   }
 }

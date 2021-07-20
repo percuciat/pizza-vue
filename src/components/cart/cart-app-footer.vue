@@ -15,7 +15,7 @@
                 </svg>
                 <span class="button-text">Вернуться назад</span>
             </router-link>
-            <button class="button button--add"
+            <button class="button button--add button--modal"
                     title="pay"
                     @click="openModal()">
                 <span class="button-text">Оплатить сейчас</span>

@@ -91,7 +91,7 @@
         isFade: false,
         contactText: null,
         isError: false,
-        picked: '',
+        picked: 'tel',
         TEXT_PLACEHOLDER_PHONE: 'Телефон',
         TEXT_PLACEHOLDER_MAIL: 'Эл. почта',
       }

@@ -1,9 +1,9 @@
 <template>
     <content-loader
             class="pizza-block"
-            :speed=2
-            :width=280
-            :height=460
+            :speed="speed"
+            :width="width"
+            :height="height"
             viewBox="0 0 280 460"
             backgroundColor="#f3f3f3"
             foregroundColor="#ecebeb"
@@ -23,6 +23,18 @@
     name: "content-app-product-loading",
     components: {
       ContentLoader
+    },
+    mounted() {
+     if (window.matchMedia("(max-width: 450px)").matches) {
+        this.width = 280;
+        this.height = 480;
+      } else if (window.matchMedia("(max-width: 1200px)").matches) {
+       this.width = 200;
+       this.height = 300;
+     }
+    },
+    beforeDestroy() {
+
     },
     data() {
       return {
