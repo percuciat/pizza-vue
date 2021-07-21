@@ -2,7 +2,11 @@
     <div class="wrapper">
         <header-app/>
         <main>
-            <router-view/>
+            <router-view v-slot="{ Component }">
+                <transition name="slide-fade">
+                    <component :is="Component" />
+                </transition>
+            </router-view>
         </main>
         <footer>
 
@@ -35,6 +39,11 @@
         loader: 'loader'
       })
     },
+    data() {
+      return {
+        transitionName: 'slide-right'
+      }
+    },
     methods: {
       ...mapActions('cart', {
         initLocalStorageCart: 'initLocalStorageCart'
@@ -54,5 +63,15 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
+    }
+    .slide-fade-enter-active {
+        transition: all .1s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to {
+        transform: translateY(60px);
+        opacity: 0;
     }
 </style>

@@ -9,7 +9,7 @@
              :class="{hide: isFade}"
              @click.stop
              role="document">
-            <div class="modal-content clearfix">
+            <div class="modal-content">
                 <button @click="close()"
                         class="close"
                         title="Close modal"
@@ -120,10 +120,11 @@
       }),
 
       close() {
-        this.isFade = true;
+        this.modalAction(false)
+        // this.isFade = true;
         setTimeout(() => {
-          this.isFade = false;
-          this.modalAction(false)
+          // this.isFade = false;
+          // this.modalAction(false)
         }, 200)
       },
 
@@ -134,9 +135,12 @@
       checkForm() {
         if(this.contactText.trim().length >= 11){
           this.sendModalForm(true);
-          this.reset()
+          this.reset();
         } else {
           this.isError = true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 1000)
         }
       },
 
@@ -144,6 +148,11 @@
         if (this.modalShow && e.key === 'Escape') {
           this.close();
         }
+      }
+    },
+    watch: {
+      isFade() {
+        console.log('GEELL')
       }
     }
   })

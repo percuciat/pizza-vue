@@ -231,6 +231,9 @@
       display: none;
     }
   }
+  .button--modal .button-text {
+    display: block;
+  }
 }
 @media screen and (max-width: 400px){
   .button--reset{

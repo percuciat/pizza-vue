@@ -1,30 +1,27 @@
-import api from '@/api'
-import { LOADING_STATUS, LOAD_PRODUCTS } from '../mutationTypes'
+import api from '@/api';
+import { LOADING_STATUS, LOAD_PRODUCTS } from '../mutationTypes';
 
 
-interface Load {
-    isLoad: Boolean;
-    type: string;
+interface IState {
+    products?: Array<any>;
+    isLoad?: boolean;
 }
-interface Products {
-    products: Array<object>;
-    type: string;
-}
+
 interface ProductsApi {
     commit: (arg0: string, arg1: any) => void
-    rootState: {filter : {sortActive : string, sortOrder : string, categoryActive: any}}
+    rootState: {filter : {sortActive : string, sortOrder : string, categoryActive: null | number}}
 }
 
-const state = () => ({
+const state = (): IState => ({
     products: [],
     isLoad: true
 });
 
 const getters = {
-    isLoad: (state: Load) => {
+    isLoad: (state: IState) => {
         return state.isLoad
     },
-    products: (state: Products) => {
+    products: (state: IState) => {
         return state.products
     }
 };
@@ -46,10 +43,10 @@ const actions = {
 
 // mutations
 const mutations = {
-    LOAD_PRODUCTS (state: { products: Array<any>; }, productsFromApi: Array<object>) {
+    LOAD_PRODUCTS (state: IState, productsFromApi: Array<object>) {
         state.products = productsFromApi
     },
-    LOADING_STATUS (state: { isLoad: Boolean; }, newLoadingStatus: Boolean) {
+    LOADING_STATUS (state: IState, newLoadingStatus: boolean) {
         state.isLoad = newLoadingStatus
     }
 };

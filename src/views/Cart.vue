@@ -1,6 +1,11 @@
 <template>
-    <cart-app-empty v-if="isEmptyCart" />
-    <cart-app v-else/>
+    <div>
+        <transition name="component-fade" mode="out-in">
+            <cart-app-empty v-if="isEmptyCart" />
+            <cart-app v-else/>
+        </transition>
+    </div>
+
 </template>
 <script>
   import { defineComponent } from "vue";
@@ -22,6 +27,12 @@
   })
 </script>
 
-<style lang="scss">
-
+<style scoped>
+    .component-fade-enter-active, .component-fade-leave-active {
+        transition: opacity 1s ease;
+    }
+    .component-fade-enter, .component-fade-leave-to
+        /* .component-fade-leave-active до версии 2.1.8 */ {
+        opacity: 0;
+    }
 </style>
