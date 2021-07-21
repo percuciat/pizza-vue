@@ -1,25 +1,11 @@
 import { MODAL_ACTION } from '../mutationTypes';
 
-/*interface commitType {
-    commit: (arg0: string, arg1: any) => void
+interface IState {
+    modalShow?: boolean;
+    loader?: boolean;
 }
 
-interface productType {
-    product: any
-}
-
-interface newCartType {
-    cart: Array<object>;
-    type: string;
-}
-
-interface cartMutation {
-    cart: any;
-    totalPrice: number,
-    totalCount: number
-}*/
-
-const state = () => ({
+const state = (): IState => ({
     modalShow: false,
     loader: false
 });
@@ -41,10 +27,10 @@ const actions = {
 
 // mutations
 const mutations = {
-    MODAL_ACTION(state: any, flagModal: boolean) {
+    MODAL_ACTION(state: IState, flagModal: boolean) {
         state.modalShow = flagModal;
     },
-    LOADER_ACTION(state: any, flagLoader: boolean){
+    LOADER_ACTION(state: IState, flagLoader: boolean){
         state.loader = flagLoader;
     }
 };

@@ -1,31 +1,25 @@
 import { CHANGE_CATEGORY, CHANGE_ORDER, CHANGE_SORT } from '../mutationTypes'
 
-interface Category {
-    categoryActive: string;
-    type: string;
-}
 
-interface Sort {
-    sortActive: string;
-    type: string;
+interface IState {
+    categoryActive?: string | null;
+    categoryNameActive?: string,
+    sortActive?: string;
+    sortOrder?: string;
 }
 
 interface commitType {
     commit: (arg0: string, arg1: any) => void
 }
 
-interface payloadCategory {
-    amount: any,
-    name: string
+interface IPayload {
+    amount?: null | number;
+    name?: string;
+    order?: string;
+    type?: string;
 }
 
-interface payloadSort {
-    order: string
-    type: string
-}
-
-
-const state = () => ({
+const state = (): IState => ({
     categoryActive: null,
     categoryNameActive: 'Все',
     sortActive: 'price',
@@ -33,20 +27,20 @@ const state = () => ({
 });
 // getters
 const getters = {
-    category: (state: Category) => {
+    category: (state: IState) => {
         return state.categoryActive
     },
-    sort: (state: Sort) => {
+    sort: (state: IState) => {
         return state.sortActive
     },
 };
 
 // actions
 const actions = {
-    setChosenCategory({commit}: commitType, {amount, name}: payloadCategory) {
+    setChosenCategory({commit}: commitType, {amount, name}: IPayload) {
         commit('CHANGE_CATEGORY', {amount, name});
     },
-    setChosenSort({commit}: commitType, {order, type}: payloadSort) {
+    setChosenSort({commit}: commitType, {order, type}: IPayload) {
         commit('CHANGE_ORDER', order);
         commit('CHANGE_SORT', type);
     }
@@ -54,15 +48,15 @@ const actions = {
 
 // mutations
 const mutations = {
-    CHANGE_CATEGORY(state: { categoryActive: any; categoryNameActive: string }, chosenCategory: any) {
+    CHANGE_CATEGORY(state: IState, chosenCategory: any) {
         state.categoryActive = chosenCategory.amount;
         state.categoryNameActive = chosenCategory.name;
     },
-    CHANGE_SORT(state: { sortActive: string; }, chosenSort: string) {
-        state.sortActive = chosenSort
+    CHANGE_SORT(state: IState, chosenSort: string) {
+        state.sortActive = chosenSort;
     },
-    CHANGE_ORDER(state: { sortOrder: string }, order: string) {
-        state.sortOrder = order
+    CHANGE_ORDER(state: IState, order: string) {
+        state.sortOrder = order;
     }
 };
 

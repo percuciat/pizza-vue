@@ -29,7 +29,7 @@
         dataCategory: [
               {id: null, name: 'Все', type: null,},
               {id: 0, name: 'Мясные', type: 0,},
-              {id: 1, name: 'Вегетарианская', type: 1,},
+              {id: 1, name: 'Вегетарианские', type: 1,},
               {id: 2, name: 'Гриль', type: 2,},
               {id: 3, name: 'Острые', type: 3,},
               {id: 4, name: 'Закрытые', type: 4,}
