@@ -8,9 +8,7 @@
                 </transition>
             </router-view>
         </main>
-        <footer>
-
-        </footer>
+        <footer></footer>
         <modal-app />
         <preloader-app v-if="loader"/>
     </div>
@@ -20,8 +18,8 @@
   import { defineComponent } from 'vue';
   import { mapActions, mapState } from 'vuex';
   import HeaderApp from '@/components/header/header-app.vue';
-  import ModalApp from '@/components/other/modal-app.vue';
-  import PreloaderApp from '@/components/other/preloader-app.vue';
+  import ModalApp from '@/components/modal/modal-app.vue';
+  import PreloaderApp from '@/components/modal/modal-app-loading.vue';
 
   export default defineComponent({
     name: 'App',

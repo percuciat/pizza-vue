@@ -2,25 +2,25 @@ import { MODAL_ACTION } from '../mutationTypes';
 
 interface IState {
     modalShow?: boolean;
-    loader?: boolean;
+    status?: string;
 }
 
 const state = (): IState => ({
     modalShow: false,
-    loader: false
+    status: 'form',
 });
 
 
 // actions
 const actions = {
     modalAction({commit} :any, payload: boolean) {
+        commit('LOADER_ACTION', 'form');
         commit('MODAL_ACTION', payload);
     },
-    sendModalForm({commit} :any, payload: boolean){
-        commit('MODAL_ACTION', false);
-        commit('LOADER_ACTION', payload);
+    sendModalForm({commit} :any){
+        commit('LOADER_ACTION', 'load');
         setTimeout(() => {
-            commit('LOADER_ACTION', false);
+            commit('LOADER_ACTION', 'thank');
         }, 4000);
     }
 };
@@ -30,8 +30,8 @@ const mutations = {
     MODAL_ACTION(state: IState, flagModal: boolean) {
         state.modalShow = flagModal;
     },
-    LOADER_ACTION(state: IState, flagLoader: boolean){
-        state.loader = flagLoader;
+    LOADER_ACTION(state: IState, flagLoader: string){
+        state.status = flagLoader;
     }
 };
 
