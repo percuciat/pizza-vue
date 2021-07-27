@@ -136,7 +136,6 @@ const mutations = {
                 (item.sum as number) += (product.price as number);
             }
         });
-        console.log('state.cart--', state.cart)
     },
     MINUS_PRODUCT(state: IState, product: IProduct) {
         state.cart[product.idP].forEach((item: IProduct) => {

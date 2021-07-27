@@ -11,12 +11,12 @@
   "proxy": "https://my-json-server.typicode.com/percuciat/pizza-db",
   "dependencies": {
     "axios": "^0.21.1",
-    "core-js": "^3.6.5",
-    "vue": "^3.0.0",
+    "core-js": "^3.15.2",
+    "vue": "^3.1.5",
     "vue-axios": "^3.2.4",
     "vue-content-loader": "^2.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue-router": "^4.0.10",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
@@ -26,11 +26,11 @@
     "@vue/cli-plugin-unit-jest": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "@vue/test-utils": "^2.0.0-0",
-    "sass": "^1.34.1",
+    "@vue/compiler-sfc": "^3.1.5",
+    "@vue/test-utils": "^2.0.0-rc.10",
+    "sass": "^1.36.0",
     "sass-loader": "^10.2.0",
-    "typescript": "~4.1.5",
+    "typescript": "^4.1.6",
     "vue-jest": "^5.0.0-0"
   }
 }

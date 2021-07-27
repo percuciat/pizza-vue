@@ -9,17 +9,14 @@ describe('FILTER ACTIONS', () => {
             name: 'pizza the best'
         };
 
-
         await filter.actions.setChosenCategory({ commit }, fakePayload);
         expect(commit).toHaveBeenCalledWith('CHANGE_CATEGORY', fakePayload)
     });
-
 });
 
 
 
 describe('FILTER MUTATIONS', () => {
-
     it('CHANGE_CATEGORY', () => {
         const categoryFake = {
             amount: 2,
@@ -57,5 +54,4 @@ describe('FILTER MUTATIONS', () => {
             sortOrder: 'asc'
         });
     });
-
 });

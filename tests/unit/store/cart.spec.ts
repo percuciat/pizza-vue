@@ -25,6 +25,8 @@ describe('check CART Mutations', () => {
     it('ADD_PRODUCT', () => {
         const cartItemFake = {
             idP: 'pizza1',
+            id: 22,
+            imageUrl: 'src',
             name: 'bobo-pizza',
             price: 322,
             sizeProduct: 4,
@@ -39,6 +41,8 @@ describe('check CART Mutations', () => {
                     {
                         name: 'bobo-pizza',
                         idP: "pizza1",
+                        id: 22,
+                        imageUrl: 'src',
                         sizeProduct: 4,
                         countSame: 1,
                         price: 322,
@@ -52,7 +56,9 @@ describe('check CART Mutations', () => {
     it('ADD_PRODUCT another type Pizza', () => {
         const cartItemFake = {
             idP: 'pizza2',
+            id: 19,
             name: 'peper-pizza',
+            imageUrl: 'src',
             price: 999,
             sizeProduct: 2,
             typeProduct: 'тонкое'
@@ -62,7 +68,9 @@ describe('check CART Mutations', () => {
                     {
                         name: 'bobo-pizza',
                         idP: "pizza1",
+                        id: 22,
                         sizeProduct: 4,
+                        imageUrl: 'src2',
                         countSame: 1,
                         price: 322,
                         sum: 322,
@@ -76,7 +84,9 @@ describe('check CART Mutations', () => {
                 'pizza1': [{
                         name: 'bobo-pizza',
                         idP: "pizza1",
+                        id: 22,
                         sizeProduct: 4,
+                        imageUrl: 'src2',
                         countSame: 1,
                         price: 322,
                         sum: 322,
@@ -86,6 +96,8 @@ describe('check CART Mutations', () => {
                     {
                         name: 'peper-pizza',
                         idP: "pizza2",
+                        id: 19,
+                        imageUrl: 'src',
                         sizeProduct: 2,
                         countSame: 1,
                         price: 999,
@@ -100,6 +112,8 @@ describe('check CART Mutations', () => {
     it('ADD_PRODUCT SAME idP Pizza', () => {
         const cartItemFake = {
             idP: 'pizza1',
+            imageUrl: 'src',
+            id: 13,
             name: 'peper-pizza',
             price: 200,
             sizeProduct: 8,
@@ -111,6 +125,8 @@ describe('check CART Mutations', () => {
                     {
                         name: 'bobo-pizza',
                         idP: "pizza1",
+                        imageUrl: 'src1',
+                        id: 14,
                         sizeProduct: 4,
                         countSame: 1,
                         price: 322,
@@ -122,6 +138,8 @@ describe('check CART Mutations', () => {
                     {
                         name: 'peper-pizza',
                         idP: "pizza2",
+                        imageUrl: 'src2',
+                        id: 19,
                         sizeProduct: 2,
                         countSame: 1,
                         price: 999,
@@ -137,6 +155,8 @@ describe('check CART Mutations', () => {
                 'pizza1': [{
                         name: 'bobo-pizza',
                         idP: "pizza1",
+                        imageUrl: 'src1',
+                        id: 14,
                         sizeProduct: 4,
                         countSame: 1,
                         price: 322,
@@ -144,6 +164,8 @@ describe('check CART Mutations', () => {
                         typeProduct: 'тонкое'
                     }, {
                         idP: 'pizza1',
+                        imageUrl: 'src',
+                        id: 13,
                         name: 'peper-pizza',
                         price: 200,
                         sizeProduct: 8,
@@ -157,6 +179,8 @@ describe('check CART Mutations', () => {
                         name: 'peper-pizza',
                         idP: "pizza2",
                         sizeProduct: 2,
+                        imageUrl: 'src2',
+                        id: 19,
                         countSame: 1,
                         price: 999,
                         sum: 999,
@@ -171,6 +195,8 @@ describe('check CART Mutations', () => {
         const cartItemFake = {
             idP: 'pizza2',
             name: 'peper-pizza',
+            imageUrl: 'src2',
+            id: 19,
             price: 400,
             sizeProduct: 2,
             typeProduct: 'тонкое'
@@ -183,6 +209,8 @@ describe('check CART Mutations', () => {
                         idP: "pizza1",
                         sizeProduct: 4,
                         countSame: 1,
+                        imageUrl: 'src1',
+                        id: 13,
                         price: 322,
                         sum: 322,
                         typeProduct: 'тонкое'
@@ -194,6 +222,8 @@ describe('check CART Mutations', () => {
                         idP: "pizza2",
                         sizeProduct: 2,
                         countSame: 1,
+                        imageUrl: 'src2',
+                        id: 19,
                         price: 999,
                         sum: 999,
                         typeProduct: 'тонкое'
@@ -209,6 +239,8 @@ describe('check CART Mutations', () => {
                     idP: "pizza1",
                     sizeProduct: 4,
                     countSame: 1,
+                    imageUrl: 'src1',
+                    id: 13,
                     price: 322,
                     sum: 322,
                     typeProduct: 'тонкое'
@@ -219,6 +251,8 @@ describe('check CART Mutations', () => {
                         idP: "pizza2",
                         sizeProduct: 2,
                         countSame: 2,
+                        imageUrl: 'src2',
+                        id: 19,
                         price: 999,
                         sum: 1399,
                         typeProduct: 'тонкое'
@@ -232,6 +266,8 @@ describe('check CART Mutations', () => {
         const cartItemFake = {
             idP: 'pizza2',
             name: 'peper-pizza',
+            imageUrl: 'src2',
+            id: 14,
             price: 400,
             sizeProduct: 2,
             typeProduct: 'тонкое'
@@ -242,22 +278,24 @@ describe('check CART Mutations', () => {
                     name: 'bobo-pizza',
                     idP: "pizza1",
                     sizeProduct: 4,
+                    imageUrl: 'src1',
+                    id: 13,
                     countSame: 1,
                     price: 322,
                     sum: 322,
                     typeProduct: 'тонкое'
                 }],
-                'pizza2': [
-                    {
-                        name: 'peper-pizza',
-                        idP: "pizza2",
-                        sizeProduct: 2,
-                        countSame: 2,
-                        price: 999,
-                        sum: 2000,
-                        typeProduct: 'тонкое'
-                    }
-                ]
+                'pizza2': [{
+                    name: 'peper-pizza',
+                    idP: "pizza2",
+                    sizeProduct: 2,
+                    countSame: 2,
+                    imageUrl: 'src2',
+                    id: 14,
+                    price: 999,
+                    sum: 2000,
+                    typeProduct: 'тонкое'
+                }]
             }
         };
         cart.mutations.REMOVE_PRODUCT(state, cartItemFake);
@@ -267,6 +305,8 @@ describe('check CART Mutations', () => {
                 idP: "pizza1",
                 sizeProduct: 4,
                 countSame: 1,
+                imageUrl: 'src1',
+                id: 13,
                 price: 322,
                 sum: 322,
                 typeProduct: 'тонкое'

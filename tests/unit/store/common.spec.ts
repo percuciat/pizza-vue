@@ -10,10 +10,9 @@ describe('COMMON ACTIONS', () => {
 
     it('sendModalForm', async () => {
         const commit = jest.fn();
-        await common.actions.sendModalForm({ commit }, true);
+        await common.actions.sendModalForm({ commit });
 
-        expect(commit).toHaveBeenCalledWith('MODAL_ACTION', false);
-        expect(commit).toHaveBeenCalledWith('LOADER_ACTION', true);
+        expect(commit).toHaveBeenCalledWith('LOADER_ACTION', 'load');
        /* expect(setTimeout)
             .toHaveBeenLastCalledWith( expect(commit).toHaveBeenCalledWith('LOADER_ACTION', false), 4000);*/
     });
@@ -31,9 +30,10 @@ describe('COMMON MUTATIONS', () => {
 
     it('LOADER_ACTION', () => {
         const state = {
-            loader: false
+            modalShow: false,
+            status: 'form',
         };
-        common.mutations.LOADER_ACTION(state, true);
-        expect(state.loader).toEqual(true);
+        common.mutations.LOADER_ACTION(state, 'load');
+        expect(state.status).toEqual('load');
     });
 });
