@@ -40,7 +40,6 @@ describe('check items inside CartAppList', () => {
     });
 
     it('empty CartAppList', () => {
-
         const wrapper = mount(CartAppList, {
             global: {
                 plugins: [store],
@@ -60,45 +59,6 @@ describe('check items inside CartAppList', () => {
 });
 
 describe('check CartAppFooter', () => {
-    /*it('CartAppFooter', () => {
-        const wrapper = mount(CartAppFooter, {
-            global: {
-                plugins: [store],
-                mocks: {
-                    $store: {
-                        state: {
-                            cart: {
-                                totalCount: 99,
-                                totalPrice: 322
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        expect(wrapper.find('.cart__bottom-details-count > b').text()).toContain('99 шт.');
-        expect(wrapper.find('.cart__bottom-details-price > b').text()).toContain('322 ₽');
-    });
-
-    it('empty CartAppFooter', () => {
-        const wrapper = mount(CartAppFooter, {
-            global: {
-                plugins: [store],
-                mocks: {
-                    $store: {
-                        state: {
-                            cart: {
-                                cart: {}
-                            }
-                        }
-                    }
-                }
-            }
-        });
-        expect(wrapper.find('.cart__bottom-details-count > b').text()).toContain('шт.');
-        expect(wrapper.find('.cart__bottom-details-price > b').text()).toContain('₽');
-    });*/
-
     it('emit openModal() CartAppFooter', async () => {
         const commit = jest.fn();
         const wrapper = mount(CartAppFooter, {
@@ -120,9 +80,9 @@ describe('check CartAppHeader', () => {
                 plugins: [store]
             }
         });
-        await wrapper.find('.reset-button').trigger('click');
+        await wrapper.find('.button--reset').trigger('click');
         await cart.actions.resetCart({commit});
         expect(commit).toHaveBeenCalledWith('RESET_CART', {});
         expect(commit).toHaveBeenCalledWith('RESET_LOCAL_STORAGE');
-    })
+    });
 });
