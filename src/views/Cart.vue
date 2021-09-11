@@ -1,11 +1,10 @@
 <template>
     <div>
-        <transition name="component-fade" mode="out-in">
+        <!--<transition name="component-fade" mode="out-in">-->
             <cart-app-empty v-if="isEmptyCart" />
             <cart-app v-else/>
-        </transition>
+        <!--</transition>-->
     </div>
-
 </template>
 <script>
   import { defineComponent } from "vue";

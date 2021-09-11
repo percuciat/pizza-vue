@@ -5,15 +5,6 @@ interface newCartType {
     type: string;
 }
 
-/*type Cart = Record<string,any>;
-
-interface LooseObject {
-    [key: string]: any
-}
-type Cart = {
-    [key: string]: any
-};*/
-
 interface IState {
     cart?: any;
     totalPrice?: number;
@@ -49,16 +40,6 @@ const getters = {
     },
 };
 
-// void if NOT return (undefined or null)
-// any вырубает TS и все типы ЗА ним
-// never - признак для значений, которых никогда не будет. Или, признак для функций, которые никогда не вернут значения, throw ERROR
-// то ли по причине ее зацикленности, например, бесконечный цикл, то ли по причине ее прерывания.
-// unknown - тип требующий определения при получении
-// as определяет тип при получении, использовать при получении unknown
-
-
-// actions
-// declare function isFunction(x: unknown): x is Function;
 
 const actions = {
     initLocalStorageCart({commit} : any) {
@@ -113,7 +94,6 @@ const mutations = {
         if(!state.cart[addedProduct.idP]) {
             addedProduct.countSame = 1;
             addedProduct.sum = addedProduct.price;
-            // state.cart[addedProduct.idP] = new Map (addedProduct)
             state.cart[addedProduct.idP] = Array.of(addedProduct)
         } else {
             let sameProductTypeSize = state.cart[addedProduct.idP].findIndex((uniqEl: IProduct) => {

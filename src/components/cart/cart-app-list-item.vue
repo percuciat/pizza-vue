@@ -1,5 +1,4 @@
 <template>
-    <transition-group name="subPizzas">
         <li class="cart__item"
             v-for="cartItem in elCart"
             :key="cartItem.idP">
@@ -58,7 +57,6 @@
                 </button>
             </div>
         </li>
-    </transition-group>
 </template>
 
 <script>
@@ -91,27 +89,3 @@
     }
   });
 </script>
-<style scoped>
-    .subPizzas-item {
-        display: inline-block;
-        margin-right: 10px;
-    }
-    .subPizzas-enter-active, .subPizzas-leave-active {
-        transition: all .4s;
-    }
-    .subPizzas-enter, .subPizzas-leave-to  {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    .price-item {
-        display: inline-block;
-        margin-right: 10px;
-    }
-    .price-enter-active, .price-leave-active {
-        transition: all 1s;
-    }
-    .price-enter, .price-leave-to {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-</style>

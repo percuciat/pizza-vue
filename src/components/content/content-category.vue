@@ -50,7 +50,6 @@
           amount: id,
           name
         });
-        // this.$store.dispatch('filter/setChosenCategory', );
         this.$store.dispatch('product/getProductsApi', {
           category: id
         })

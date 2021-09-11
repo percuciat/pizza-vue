@@ -17,8 +17,5 @@ export default {
             alert(`ATTENTION: ${e}`);
             return e
         }
-    },
-    saveApiDataToLocalStorage() {
-        console.log('need to complete!')
     }
 }
